@@ -1,6 +1,6 @@
-let num = 42
-let firstName = "Dmitry" // string
-const isProgrammer = true // boolean
+//let num = 42
+//let firstName = "Dmitry" // string
+//const isProgrammer = true // boolean
 
 /* Can Do
 let $ = "test"
