@@ -7,22 +7,20 @@ const ListElement = document.getElementById('list')
 
 // console.log(inputElement.value)
 
-const notes = ['Записать блок про массивы', 'рассказать теорию обьектов']
+//const notes = ['записать блок про массивы', 'рассказать теорию обьектов',]
 
-function render() {
-    ListElement.insertAdjacentHTML(
-        'beforeend', 
-        getNoteTempLate(notes[0])
-    )
-    ListElement.insertAdjacentHTML(
-        'beforeend', 
-        getNoteTempLate(notes[1])
-    )
+/*function render() {
+
+    for (let i = 0; i < notes.length; i++) {
+        ListElement.insertAdjacentHTML(
+            'beforeend', 
+            getNoteTempLate(notes[i]))
+    }
 }
 
-render()
+render()*/
 
-createBtn.onclick = function () {
+/*createBtn.onclick = function () {
 if (inputElement.value.length === 0) {
     return 
 }
@@ -32,9 +30,9 @@ if (inputElement.value.length === 0) {
         getNoteTempLate(inputElement.value)
     )
     inputElement.value = ''
-}
+}*/
 
-function getNoteTempLate(title) {
+/*function getNoteTempLate(title) {
     return `
         <li
             class="list-group-item d-flex justify-content-between align-items-center"
@@ -43,6 +41,97 @@ function getNoteTempLate(title) {
             <span>
                 <span class="btn btn-small btn-success">&check;</span>
                 <span class="btn btn-small btn-danger">&times;</span>
+            </span>
+        </li>
+    `
+}*/
+
+/**
+ *
+ * Object Theory
+
+const person = {
+    firstName: 'Vladilen',
+    lastName: 'Minin',
+    year: 1993,
+    hasGirlfriend: false,
+    languages: ['ru', 'en', 'de'],
+    getFullName: function(){
+        console.log(person.firstName + ' ' + person.lastName)
+    },
+}
+
+console.log(person.year)
+console.log(person['languages'])
+const key = 'hasGirlfriend'
+console.log(person[key])
+person.hasGirlfriend = true
+console.log(person[key])
+person.getFullName() */
+
+const notes = [{
+    title: 'записать блок про массивы',
+    completed: false,
+},
+{
+    title: 'рассказать теорию объектов',
+    completed: true,
+}
+]
+
+function render() {
+    ListElement.innerHTML = ''
+    if (notes.length === 0){
+        ListElement.innerHTML = '<p>Нет элементов</p>'
+    }
+    for (let i = 0; i < notes.length; i++) {
+        ListElement.insertAdjacentHTML(
+            'beforeend', 
+            getNoteTempLate(notes[i], i))
+    }
+}
+render()
+
+createBtn.onclick = function () {
+    if (inputElement.value.length === 0) {
+        return 
+    }
+    const newNote ={
+        title: inputElement.value,
+        completed: false,
+    }
+    notes.push(newNote)
+    render()
+    inputElement.value = ''
+}
+
+ListElement.onclick = function (event) {
+    if (event.target.dataset.index) {
+        const index = parseInt(event.target.dataset.index)
+        const type = event.target.dataset.type
+
+        if (type === 'toggle') {
+            notes[index].completed = !notes[index].completed
+        }   else if (type === 'remove') {
+            notes.splice(index, 1)
+        }
+
+        render()
+    }
+}
+
+function getNoteTempLate(note, index) {
+    return `
+        <li
+            class="list-group-item d-flex justify-content-between align-items-center"
+        >
+            <span class ="${note.completed ? 'text-decoration-line-through' : ''} ">${note.title}</span>
+            <span>
+                <span class="btn btn-small btn-${
+                    note.completed ? 'warning' : 'success'
+                }" data-index="${index}" data-type="toggle">&check;</span>
+                <span class="btn btn-small btn-danger" data-type="remove"
+                data-index="${index}">&times;</span>
             </span>
         </li>
     `
