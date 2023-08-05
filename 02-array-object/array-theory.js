@@ -26,8 +26,71 @@ const newNames = names.with(index, 'Елена Великая')
 //console.log(names)
 //console.log(newNames)
 
-const capitalNames = names.map(function (name) {
-    const newName = name + '!'
-    return newName
+/*const capitalNames = names.map(function (name, index) {
+    if (index === 1) {
+        return 'Елена Великая'
+    }
+    return name 
 })
-console.log(capitalNames)
+console.log(capitalNames) */
+
+//console.log(names.includes('Игорь'))
+//console.log(names.indexOf('Игорь') )
+
+const people = [
+    {name: 'Владилен', budget: 4200}, 
+    {name: 'Елена', budget: 15100},
+    {name: 'Игорь', budget: 300},
+    {name: 'Ксюша', budget: 7520},
+]
+
+//console.log(people.indexOf({name: 'Ксения', budget: 7520 }))
+
+/*let findedPerson
+
+for(let person of people) {
+    if (person.budget === 7520) {
+        findedPerson = person
+    }
+}*/
+
+// const finded = people.findIndex(function (person) {
+//    return person.budget === 7520
+// })
+
+//console.log(people.with(finded, 42))
+
+// const finded = people.find((p) => p.budget === 7520)
+// console.log(finded)
+
+
+
+/* let sumBudget = 0
+const filtered = people.filter(function(p) {
+    return p.budget > 5000
+})
+console.log(filtered) 
+Filtered.forEach(function(p) {
+    sumBudget = sumBudget + p.budget
+}) */
+
+/* const byBudget = (p) => p.budget > 5000
+const pickBudget = (p) => p.budget
+
+const sumBudget = people
+    .filter(byBudget)
+    .map(pickBudget)
+    .reduce((acc, p) =>acc + p, 0) 
+
+console.log(sumBudget) */
+
+/* const string = 'Привет, как дела?'
+const reversed = string
+.split('')
+.toReversed()
+.join('').
+split('')
+.filter((c) => c !=='!')
+.join('')
+
+console.log(reversed) */
